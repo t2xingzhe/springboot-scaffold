@@ -1,0 +1,33 @@
+DROP TABLE USER;
+
+CREATE TABLE `user` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `name` VARCHAR(20) NOT NULL COMMENT '用户名',
+  `password` VARCHAR(20) NOT NULL COMMENT '密码',
+  `email` VARCHAR(20) NOT NULL COMMENT '邮箱',
+  `status` INT(2) DEFAULT NULL COMMENT '用户状态 0正常 1删除 2异常 3冻结',
+  `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (1, '123', '123', 'xingzhe', 1, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (2, 'xing', 'password', 't2xingzhe@sina.com', 0, '2021-04-13 20:19:54', '2021-04-13 20:19:54');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (3, '123@139.com', '123', 'xingzhe13', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (4, '123@139.com', '123', 'xingzhe14', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (5, '123@139.com', '123', 'xingzhe15', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (6, '123@139.com', '123', 'xingzhe16', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (7, '123@139.com', '123', 'xingzhe17', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (8, '123@139.com', '123', 'xingzhe18', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (9, '123@sina.com', '123', 'xingzhe1', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (10, '123@sina.com', '123', 'xingzhe2', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (11, '123@sina.com', '123', 'xingzhe3', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (12, '123@sina.com', '123', 'xingzhe4', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (13, '123@sina.com', '123', 'xingzhe5', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (14, '123@sina.com', '123', 'xingzhe6', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (15, '123@gmail.com', '123', 'xingzhe7', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (16, '123@gmail.com', '123', 'xingzhe8', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (17, '123@gmail.com', '123', 'xingzhe9', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (18, '123@gmail.com', '123', 'xingzhe0', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (19, '123@gmail.com', '123', 'xingzhe11', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
+INSERT INTO `test`.`user`(`id`, `name`, `password`, `email`, `status`, `update_time`, `create_time`) VALUES (20, '123@gmail.com', '123', 'xingzhe12', 0, '2021-04-13 20:16:08', '2021-04-13 19:33:43');
