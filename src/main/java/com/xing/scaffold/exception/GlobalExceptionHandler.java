@@ -1,7 +1,9 @@
-package com.xing.scaffold.config;
+package com.xing.scaffold.exception;
 
 import com.xing.scaffold.domain.constant.ErrorEnum;
 import com.xing.scaffold.domain.http.BaseResponse;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -19,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestControllerAdvice(basePackages = {"com.xing"})
 public class GlobalExceptionHandler {
+
+    Logger logger = LogManager.getLogger(GlobalExceptionHandler.class);
 
     /**
      * 针对参数校验失败异常的处理
@@ -42,16 +46,9 @@ public class GlobalExceptionHandler {
             });
             result.setCode(ErrorEnum.PARAM_ERROR.getErrCode());
             result.setMsg(sb.toString());
-        } else if (exception instanceof MethodArgumentNotValidException) {
-            StringBuilder sb = new StringBuilder();
-            ((MethodArgumentNotValidException) exception).getBindingResult().getAllErrors().forEach(error -> {
-                String fieldName = ((FieldError) error).getField();
-                sb.append("[").append(fieldName).append("]").append(error.getDefaultMessage()).append("; ");
-            });
-            result.setCode(ErrorEnum.PARAM_ERROR.getErrCode());
-            result.setMsg(sb.toString());
         } else if (exception instanceof IllegalArgumentException) {
-            result.result(ErrorEnum.PARAM_ERROR);
+            logger.error("IllegalArgumentException", exception);
+            result.result(ErrorEnum.COMMON_ERROR);
         }
         return result;
     }
@@ -67,9 +64,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Throwable.class)
     public BaseResponse throwableHandler(Exception exception,
                                          HttpServletRequest request, HttpServletResponse response) {
-        BaseResponse result = new BaseResponse(ErrorEnum.COMMON_ERROR.getErrCode(),
+        logger.error("系统内部异常！", exception);
+        return new BaseResponse(ErrorEnum.COMMON_ERROR.getErrCode(),
                 ErrorEnum.COMMON_ERROR.getErrMsg());
-        return result;
     }
 }
 

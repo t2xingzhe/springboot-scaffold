@@ -25,7 +25,12 @@ public enum ErrorEnum {
     /**
      * 参数异常
      */
-    PARAM_ERROR(3,"参数异常");
+    PARAM_ERROR(3,"参数异常"),
+
+    /**
+     * 用户未找到
+     */
+    USER_NOT_EXIST(4,"用户未找到");
 
     /**
      * @param errCode 错误码

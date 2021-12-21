@@ -15,6 +15,7 @@
 
 1.  安装lombok插件，使用intellij idea作为ide工具，在设置中找plugins，搜索lombok安装
 2.  创建数据库，导入初始测试数据db.txt，数据库名，端口，用户名，密码更新到application.yml
+3.  配置好maven环境
 3.  启动应用SpringbootScaffoldApplication
 4.  访问接口文档地址http://localhost:8080/swagger-ui.html
 

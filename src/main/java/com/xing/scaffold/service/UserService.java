@@ -6,6 +6,7 @@ import com.xing.scaffold.domain.entity.UserDo;
 import com.xing.scaffold.domain.http.BaseResponse;
 import com.xing.scaffold.domain.http.UserListResponse;
 import com.xing.scaffold.domain.http.UserResponse;
+import com.xing.scaffold.exception.ExtensionException;
 import com.xing.scaffold.repository.UserDao;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class UserService {
     /**
      * 翻页数
      */
-    private Integer pageSize = 10;
+    private static final Integer PAGE_SIZE = 10;
 
     /**
      * 根据用户id查用户信息
@@ -48,6 +49,10 @@ public class UserService {
         UserResponse userResponse = new UserResponse();
         userResponse.result(ErrorEnum.SUCCESS);
         UserDo userDo = userDao.getById(id);
+        if (userDo == null) {
+            //这里可以直接返回response，为了演示全局异常捕获，这里抛出异常
+            throw new ExtensionException(ErrorEnum.USER_NOT_EXIST);
+        }
         UserVo userVo = new UserVo();
         BeanUtils.copyProperties(userDo, userVo);
         userResponse.setUserVo(userVo);
@@ -56,6 +61,7 @@ public class UserService {
 
     /**
      * 保存用户信息
+     *
      * @param userVo 用户展示信息
      * @return 返回结果
      */
@@ -70,8 +76,9 @@ public class UserService {
 
     /**
      * 更新用户状态
+     *
      * @param status 用户状态
-     * @param id 用户id
+     * @param id     用户id
      * @return 返回结果
      */
     public BaseResponse update(Integer status, Integer id) {
@@ -87,15 +94,17 @@ public class UserService {
 
     /**
      * 查用户翻页信息
+     *
      * @param page 页数
      * @return 返回结果
      */
-    public UserListResponse getUserList(Integer page) {
+    public UserListResponse getUserList(Integer page, Integer pageSize) {
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        pageSize = pageSize == null ? PAGE_SIZE : pageSize;
         Pageable pageable = PageRequest.of(page, pageSize, sort);
         Page<UserDo> userDos = userDao.findAll(pageable);
         List<UserVo> resultList = new ArrayList<>();
-        for(UserDo userDo:userDos.getContent()){
+        for (UserDo userDo : userDos.getContent()) {
             UserVo userVo = new UserVo();
             BeanUtils.copyProperties(userDo, userVo);
             resultList.add(userVo);

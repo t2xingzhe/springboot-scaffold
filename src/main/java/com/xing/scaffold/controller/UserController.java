@@ -34,7 +34,7 @@ public class UserController {
         return userService.getById(id);
     }
 
-    @ApiOperation(value = "添加用户", notes = "添加用户信息")
+    @ApiOperation(value = "添加用户", notes = "添加用户信息，对提交信息的判断写在UserVo对象中，优雅")
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public BaseResponse addUser(@RequestBody @Validated UserVo user) {
         return userService.save(user);
@@ -46,9 +46,9 @@ public class UserController {
         return userService.update(status, id);
     }
 
-    @ApiOperation(value = "获取翻页用户信息", notes = "获取翻页用户信息")
+    @ApiOperation(value = "获取用户信息列表", notes = "获取用户信息列表，翻页参数可以为null，默认每页10条记录")
     @RequestMapping(value = "/user/list", method = RequestMethod.GET)
-    public UserListResponse getUserList(Integer page){
-        return userService.getUserList(page);
+    public UserListResponse getUserList(Integer page, Integer pageSize) {
+        return userService.getUserList(page, pageSize);
     }
 }
